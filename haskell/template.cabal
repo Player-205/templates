@@ -24,6 +24,7 @@ common extensions
   default-extensions:
     NoFieldSelectors
     NoStarIsType
+    AllowAmbiguousTypes
     BangPatterns
     BinaryLiterals
     BlockArguments
