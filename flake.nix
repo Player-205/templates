@@ -9,8 +9,8 @@
 
     templates = {
 
-      haskell-cabal2nix = {
-        path = ./haskell-cabal2nix;
+      haskell = {
+        path = ./haskell;
         description = "A Haskell executable built with cabal2nix";
       };
 

@@ -20,8 +20,7 @@
         jailbreakUnbreak = pkg:
           pkgs.haskell.lib.doJailbreak (pkg.overrideAttrs (_: { meta = { }; }));
 
-        # DON'T FORGET TO PUT YOUR PACKAGE NAME HERE, REMOVING `throw`
-        packageName = throw "put your package name here!";
+        packageName = "template";
       in {
         packages.${packageName} =
           haskellPackages.callCabal2nix packageName self rec {
@@ -36,6 +35,7 @@
             haskellPackages.haskell-language-server # you must build it with your ghc to work
             ghcid
             cabal-install
+            haskellPackages.cabal-fmt
           ];
           inputsFrom = map (__getAttr "env") (__attrValues self.packages.${system});
         };
