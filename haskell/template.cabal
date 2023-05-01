@@ -16,7 +16,9 @@ extra-doc-files: CHANGELOG.md
 -- extra-source-files:
 
 common warnings
-  ghc-options: -Wall
+  ghc-options: 
+    -Wall
+    -Wno-unticked-promoted-constructors
 
 common extensions
   default-extensions:
@@ -107,6 +109,7 @@ common dependensies
   build-depends:
     , base
     , lens
+    , generic-lens
     , universum
 
   mixins:        base hiding (Prelude)

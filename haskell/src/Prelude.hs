@@ -1,4 +1,5 @@
 {-# LANGUAGE NoImplicitPrelude #-}
+{-# OPTIONS_GHC -Wno-dodgy-exports #-}
  module Prelude
   (module Prelude
   , module X
@@ -19,4 +20,6 @@ import Universum.Monoid      as X
 import Universum.Nub         as X
 import Universum.Print       as X
 import Universum.String      as X
+
 import Control.Lens          as X
+import Data.Generics.Lables  as X
