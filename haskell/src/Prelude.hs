@@ -22,4 +22,4 @@ import Universum.Print       as X
 import Universum.String      as X
 
 import Control.Lens          as X
-import Data.Generics.Lables  as X
+import Data.Generics.Labels  as X
