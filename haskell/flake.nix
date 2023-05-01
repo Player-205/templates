@@ -31,6 +31,12 @@
         defaultPackage = self.packages.${system}.default;
 
         devShells.default = pkgs.mkShell {
+          shellHook =
+            ''
+            alias cabal="cabal-fmt -i *.cabal; cabal"
+            alias :r="cabal run"
+            '';
+
           buildInputs = with pkgs; [
             haskellPackages.haskell-language-server # you must build it with your ghc to work
             ghcid
