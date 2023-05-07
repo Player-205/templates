@@ -17,6 +17,13 @@
 
         haskellPackages = pkgs.haskellPackages;
 
+        cabal-install-wrapper = pkgs.writeScriptBin "cabal"
+          ''
+          #!${pkgs.bash}
+          ${pkgs.haskellPackages.cabal-fmt} -i *.cabal
+          ${pkgs.cabal-install} $@
+          '';
+
         jailbreakUnbreak = pkg:
           pkgs.haskell.lib.doJailbreak (pkg.overrideAttrs (_: { meta = { }; }));
 
@@ -31,16 +38,10 @@
         defaultPackage = self.packages.${system}.default;
 
         devShells.default = pkgs.mkShell {
-          shellHook =
-            ''
-            alias cabal="cabal-fmt -i *.cabal; cabal"
-            alias :r="cabal run"
-            '';
-
           buildInputs = with pkgs; [
             haskellPackages.haskell-language-server # you must build it with your ghc to work
             ghcid
-            cabal-install
+            cabal-install-wrapper
             haskellPackages.cabal-fmt
           ];
           inputsFrom = map (__getAttr "env") (__attrValues self.packages.${system});
