@@ -24,6 +24,12 @@
           ${pkgs.cabal-install} $@
           '';
 
+        hls-wrapper = pkgs.writeScriptBin "haskell-language-server"
+          ''
+          #!${pkgs.bash}/bin/bash
+          PATH=${pkgs.cabal-install}/bin:$PATH ${haskellPackages.haskell-language-server}/bin/haskell-language-server $@
+          '';
+
         jailbreakUnbreak = pkg:
           pkgs.haskell.lib.doJailbreak (pkg.overrideAttrs (_: { meta = { }; }));
 
@@ -39,7 +45,7 @@
 
         devShells.default = pkgs.mkShell {
           buildInputs = with pkgs; [
-            haskellPackages.haskell-language-server # you must build it with your ghc to work
+            hls-wrapper
             ghcid
             cabal-install-wrapper
             haskellPackages.cabal-fmt
